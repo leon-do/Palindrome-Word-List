@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script>
+	var myArray = ["aaa", "bab"]
+
+	var myArray2 = [];
+
+		repeat(myArray);
+		
+		// slices out repeats
+		function repeat(myArray){
+
+			// for each word (w) in the array...
+			for (var w = 0; w < myArray.length; w++){
+				
+				// split the array into single words "aaa"
+				myWord = myArray[w];
+
+				//split the word into single letters ["a","a","a"]
+				myWord.split("")
+
+				// get the keycode of the first letter of my word
+				var keyCode = myWord.charCodeAt(0)
+
+				//add up all of the keycodes
+				var addKeycode = 0;
+				for (var i = 0; i < myWord.length; i++){
+					addKeycode = addKeycode + myWord[i].charCodeAt(0)
+				}
+
+				//some logic
+				if (keyCode * myWord.length !== addKeycode){
+					myArray2.push(myWord)
+				}
+
+
+			}//for loop
+
+			console.log(myArray2)
+
+		}//function
+
+	</script>
+</body>
+</html>

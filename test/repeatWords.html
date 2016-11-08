@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script>
+		var myArray2 = ["dOg", "dOg","DOG", "CAT", "caT", "cat", "moUse","elephat"];
+		var myArray3 = [];
+
+removeRepeatWords(myArray2)
+
+	function removeRepeatWords (myArray2){
+
+		myArray2.push("")
+
+		for (var i = 0; i < myArray2.length - 1; i++){
+
+			var firstWord = myArray2[i].toLowerCase();
+			var secondWord = myArray2[i+1].toLowerCase();
+
+			if (firstWord !== secondWord){
+				myArray3.push(myArray2[i].toLowerCase())
+			}
+		}
+
+		console.log(myArray3)
+	}
+	</script>
+</body>
+</html>

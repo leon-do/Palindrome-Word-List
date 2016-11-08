@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Palindrome Word List</title>
+</head>
+<body>
+	<h2> Palindrome Word List (188 words)
+	 </h2>
+	<h3> Filtered from ≈ 475,000 english words. </h3>
+	<div class="palindromes"> </div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+	<script src="wordArray.js"> </script>
+
+	<script type="text/javascript">	
+
+// ======================================================================
+	
+	var testWord = ["abc", "a", "aaa", "aba"]
+
+	// palindromesArray1 gets all of the palindromes
+	var palindromesArray1 = [];
+
+	//palindromesArray2 removes the repeats words ex: cat, cat, cat
+	var palindromesArray2 = [];
+
+	//palindromesArray3 removes the repeats letters ex: aa, aaaa, aaaaa
+	var palindromesArray3 = [];
+
+	//palindromesArray4 removes the capital words ex: AAA, Aaa, AAa
+	var palindromesArray4 = [];	
+// ======================================================================
+	
+	// start here. dicionary is from wordArray.js
+	palindrome(dictionary);
+
+// ======================================================================
+
+	// gets palindromes
+	function palindrome(dictionary){
+
+		var forwardWord;
+		var backWord;
+
+		for (var i = 0; i < dictionary.length; i++){ //loop through each word
+
+			forwardWord = dictionary[i].split("").join("");
+			backWord = dictionary[i].split("").reverse().join("");
+
+
+			if (forwardWord === backWord) {
+				palindromesArray1.push(forwardWord)
+
+			}//if
+
+		}//loop
+
+		removeRepeatWords(palindromesArray1);
+
+	}//palendrome
+
+
+// ======================================================================
+
+
+	function removeRepeatWords (palindromesArray1){
+
+		palindromesArray1.push("");
+
+		for (var i = 0; i < palindromesArray1.length -1 ; i++){
+
+			var firstWord = palindromesArray1[i].toLowerCase();
+			var secondWord = palindromesArray1[i+1].toLowerCase();
+
+			if (firstWord !== secondWord){
+				palindromesArray2.push(palindromesArray1[i])
+			}
+
+		}//loop
+
+		removeRepeatLetters(palindromesArray2)
+	
+	}//removeRepeatWords
+
+// ======================================================================
+
+
+	// removes repeats ex: a, aa, aaaaa, aaaaaaa etc.
+	function removeRepeatLetters(palindromesArray2){
+
+		// for each word (w) in the array...
+		for (var w = 0; w < palindromesArray2.length; w++){
+			
+			// split the array into single words "aaa"
+			myWord = palindromesArray2[w];
+
+			//split the word into single letters ["a","a","a"]
+			myWord.split("")
+
+			// get the keycode of the first letter of my word
+			var keyCode = myWord.charCodeAt(0)
+
+			//add up all of the keycodes
+			var addKeycode = 0;
+			for (var i = 0; i < myWord.length; i++){
+				addKeycode = addKeycode + myWord[i].charCodeAt(0)
+			}
+
+			//some logic
+			if (keyCode * myWord.length !== addKeycode){
+				palindromesArray3.push(myWord)
+			}
+
+
+		}//for loop
+
+		removeCapWords(palindromesArray3);
+
+	}//removeRepeatLetters
+
+
+// ======================================================================
+		
+	function removeCapWords(palindromesArray3){
+		//get each word
+
+		for (var i = 0; i < palindromesArray3.length; i++){
+
+			// get first char of each word
+			var char0 = palindromesArray3[i].charAt(0);
+
+			//if char0 is capital
+			if (char0 !== char0.toUpperCase()){
+				palindromesArray4.push(palindromesArray3[i])
+			}
+		}
+
+			displayArray(palindromesArray4)
+
+	}//removeCapWords
+
+// ======================================================================
+
+	function displayArray(palendromeArray4){
+		for (var i = 0; i < palindromesArray4.length; i++){
+			$(".palindromes").append("<div>" + palindromesArray4[i] + "</div>")
+		}
+
+		console.log(palindromesArray4.length)
+	}
+
+
+	</script>
+</body>
+</html>

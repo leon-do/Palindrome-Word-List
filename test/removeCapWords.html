@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script>
+		var myArray = ["AAA", "Aaa", "aaa"];
+		var myArray2 = [];
+
+		function removeCapWords(myArray){
+			//get each word
+			for (var i = 0; i < myArray.length; i++){
+
+				// get first char of each word
+				var char0 = myArray[i].charAt(0)
+
+				//if char0 is capital
+				if (char0 !== char0.toUpperCase()){
+					myArray2.push(myArray[i])
+				}
+			}
+
+				console.log(myArray2)
+
+		}//removeCapWords
+		
+	</script>
+</body>
+</html>
