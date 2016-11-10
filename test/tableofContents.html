@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+
+<body>
+
+	<div class="tableOfContents"> </div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+	<script type="text/javascript">
+
+		var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+
+		//display table of contents
+		makeTableOfContents(alphabet);
+
+		function makeTableOfContents(alphabet){
+			for (var i = 0; i < alphabet.length; i++){
+
+				var theLink =
+                    $(
+                    "<div class='lttrs'>" +
+                    "<a href=#" + alphabet[i] +
+                    ">" +
+                    alphabet[i] + 
+                    "</a>" + 
+                    "</div>" +
+                    "<br>");
+
+				$(".tableOfContents").append(theLink);
+		
+				$(theLink).on('click', clickIt);
+
+
+			}//loop
+		}//function
+
+
+		// when i click on the letter...
+		function clickIt(){
+			// get id
+			var id = $(this).attr("id");
+		}
+
+
+
+
+
+
+	</script>
+
+</body>
+</html>

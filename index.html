@@ -2,11 +2,44 @@
 <html>
 <head>
 	<title>Palindrome Word List</title>
+<link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Montserrat" rel="stylesheet">
+
+
+	<style>
+		body{
+			font-family: 'Josefin Sans', sans-serif;
+			text-align: center;
+			color: #FDFFFC;
+			background: #011627;
+		}
+		.palindromes{
+			font-family: 'Montserrat', sans-serif;
+			font-size: 50px;
+		}
+		.tableOfContents{
+			position: fixed;
+			bottom:5px;
+			margin: 0;
+		}
+		a{
+			text-decoration: none;
+			color: #FDFFFC;
+			font-size: 5vw;
+			opacity: 0.1;
+			padding-left: 1.5vw;
+		}
+		a:hover{
+			opacity: 1;
+		}
+
+	</style>
+
 </head>
 <body>
-	<h2> Palindrome Word List (188 words)
-	 </h2>
+
+	<h1> Palindrome Word List (188 words)</h1>
 	<h3> Filtered from ≈ 475,000 english words. </h3>
+	<div class="tableOfContents"> </div>
 	<div class="palindromes"> </div>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -16,30 +49,32 @@
 	<script type="text/javascript">	
 
 // ======================================================================
-	
-	var testWord = ["abc", "a", "aaa", "aba"]
+	/* Notes:
 
-	// palindromesArray1 gets all of the palindromes
-	var palindromesArray1 = [];
+	palindromesArray1 gets all of the palindromes
 
-	//palindromesArray2 removes the repeats words ex: cat, cat, cat
-	var palindromesArray2 = [];
+	palindromesArray2 removes the repeats words ex: cat, cat, cat
 
-	//palindromesArray3 removes the repeats letters ex: aa, aaaa, aaaaa
-	var palindromesArray3 = [];
+	palindromesArray3 removes the repeats letters ex: aa, aaaa, aaaaa
 
-	//palindromesArray4 removes the capital words ex: AAA, Aaa, AAa
-	var palindromesArray4 = [];	
+	palindromesArray4 removes the capital words ex: AAA, Aaa, AAa
+
+	*/
+
+	var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+
+
 // ======================================================================
 	
-	// start here. dicionary is from wordArray.js
+	// start here. dictionary is from wordArray.js
 	palindrome(dictionary);
+
 
 // ======================================================================
 
 	// gets palindromes
 	function palindrome(dictionary){
-
+		var palindromesArray1 = [];
 		var forwardWord;
 		var backWord;
 
@@ -65,7 +100,7 @@
 
 
 	function removeRepeatWords (palindromesArray1){
-
+		var palindromesArray2 = [];
 		palindromesArray1.push("");
 
 		for (var i = 0; i < palindromesArray1.length -1 ; i++){
@@ -89,6 +124,7 @@
 	// removes repeats ex: a, aa, aaaaa, aaaaaaa etc.
 	function removeRepeatLetters(palindromesArray2){
 
+		var palindromesArray3 = [];
 		// for each word (w) in the array...
 		for (var w = 0; w < palindromesArray2.length; w++){
 			
@@ -123,8 +159,9 @@
 // ======================================================================
 		
 	function removeCapWords(palindromesArray3){
-		//get each word
+		var palindromesArray4 = [];
 
+		//get each word
 		for (var i = 0; i < palindromesArray3.length; i++){
 
 			// get first char of each word
@@ -133,22 +170,66 @@
 			//if char0 is capital
 			if (char0 !== char0.toUpperCase()){
 				palindromesArray4.push(palindromesArray3[i])
-			}
-		}
+			}//if
+		
+		}//loop
 
-			displayArray(palindromesArray4)
+			firstLettrOfWord(palindromesArray4);
 
 	}//removeCapWords
 
 // ======================================================================
 
-	function displayArray(palendromeArray4){
-		for (var i = 0; i < palindromesArray4.length; i++){
-			$(".palindromes").append("<div>" + palindromesArray4[i] + "</div>")
-		}
+function firstLettrOfWord(array){
 
-		console.log(palindromesArray4.length)
-	}
+	var existingletters = [];
+
+	// loop through array
+	for (var i = 0; i < array.length; i++){
+
+		$(".palindromes").append(
+			"<div class=" + array[i] + ">" +
+				array[i] + 
+			"</div> <br>")
+
+		//look at first char of each array
+		var firstChar = array[i].charAt(0)
+
+		// if alphabet array contains first character & letter doesn't exist in existing letters array
+		if (alphabet.includes(firstChar) && existingletters.includes(firstChar) == false){
+
+			// add attr("id",firstChar)
+			$("." + array[i]).attr("id",firstChar)
+			// push letter into existingletters array
+			existingletters.push(firstChar);
+		}//if
+	
+	}//for loop
+
+	makeTableOfContents(alphabet);
+
+}//firstletterofword
+
+
+// ======================================================================
+
+	// makes table of contents (on the bottom)
+	function makeTableOfContents(alphabet){
+
+		for (var i = 0; i < alphabet.length; i++){
+
+				var theLink =
+                    $(
+                    "<a href=#" + alphabet[i] +
+                    " class='lttrs'>" +
+                    alphabet[i] + 
+                    "</a>");
+
+			$(".tableOfContents").append(theLink);
+	
+
+		}//loop
+	}//function
 
 
 	</script>

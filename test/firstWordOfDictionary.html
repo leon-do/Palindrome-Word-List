@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+	<script>
+	// var array =[addition, apple, argo, bananna, boob]
+	// give first word with a, b, c etc with an id
+	// example: give addition an id of 'a' and bananna an id of 'b'
+
+	var array =["addition", "apple", "argo", "bananna", "boob", "dog", "douche"]
+
+	var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+
+	var existingletters = [];
+
+	var abcIndex = 0;
+
+firstLettrOfWord();
+
+function firstLettrOfWord(){
+	// loop through array
+	for (var i = 0; i < array.length; i++){
+
+		$("body").append(
+			"<div class=" + array[i] + ">" +
+				array[i] + 
+			"</div>")
+
+		//look at first char of each array
+		var firstChar = array[i].charAt(0)
+
+		// if alphabet array contains first character & letter doesn't exist in existing letters array
+		if (alphabet.includes(firstChar) && existingletters.includes(firstChar) == false){
+
+			// add attr("id",firstChar)
+			$("." + array[i]).attr("id",firstChar)
+			// push letter into existingletters array
+			existingletters.push(firstChar);
+		}//if
+	
+	}//for loop
+}//firstletterofword
+
+
+	</script>
+</body>
+</html>
